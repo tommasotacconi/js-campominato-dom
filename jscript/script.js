@@ -21,6 +21,16 @@ function getRandomNumbers (max, totalNumbers) {
   return numbers;
 }
 
+// funzione di fine partita, riceve i parametri score per il punteggio
+// finale e hasWon, che valuta se l'utente ha vinto
+function endGame (scoreNum, hasWon = false) {
+  const result = hasWon ? 'vinto' : 'perso';
+  const message = `Hai ${result}, hai totalizzato un punteggio di ${scoreNum} punti`
+  alert(message);
+  parResult.innerText = message;
+  isGameOver = true;
+}
+
 
 // FASE DI PREPARAZIONE
 // -Prendo la griglia
@@ -31,6 +41,8 @@ const button = document.querySelector('button');
 const select = document.querySelector('select');
 // -Prendo il punto per lo score
 const score = document.querySelector('.score');
+// -Prendo il paragrafo per il risultato finale
+const parResult = document.querySelector('.par-result');
 
 // -Imposto delle condizioni iniziali  per poter controllare
 // righe e colonne della griglia
@@ -43,12 +55,14 @@ const colsExp = 7;
 let totCells;
 
 // imposto il numero di bombe fisso e inizializzo l'array di bombe
-const totalBombs = 48;
+const totalBombs = 16;
 let bombs;
 
 // -Iniazializzo lo score
 let scoreNum = 0;
 
+// -Inizializzo isGameOver;
+let isGameOver;
 
 // FASE DI IMPORTAZIONE DATI
 // -Attacco un event listener alla select per modificare il valore
@@ -63,8 +77,16 @@ select.addEventListener('change', () => {
 // FASE DI ELABORAZIONE
 // -Attacco un event listener sul bottone play
 button.addEventListener('click', function () {
-  // -Ripulisco il contenuto di grid
+  // -Setto isGameOver a false quando comincio a giocare o rigioco
+  isGameOver = false;
+
+  // -Setto scoreNum uguale a 0 per quando rigioco
+  scoreNum = 0;
+
+  // -Ripulisco il contenuto di grid, score e parResult
   grid.innerHTML = '';
+  score.innerHTML = '';
+  parResult.innerHTML = '';
 
   // -Cambio il testo del button
   if (button.innerText === 'Play' ) button.innerText = 'Play again';
@@ -136,9 +158,11 @@ button.addEventListener('click', function () {
     cell.addEventListener('click', function () {
       // -Stampo in console il numero di cella
       console.log(cell.innerText);
+
       // -La funzione procede solo se la cella non ha classe 'clicked'
-      if (cell.classList.contains('clicked')) return;
-      // -Verifico se ha calpestato la bomba
+      if (isGameOver || cell.classList.contains('clicked')) return;
+
+      // -Verifico se ha preso la bomba
       if (bombs.includes(i + 1)) {
         // -Stampo il messaggio
         console.log('Hai selezionato una bomba, fine della partita.');
@@ -146,8 +170,9 @@ button.addEventListener('click', function () {
         cell.innerText = '';
         // -Aggiungo la classe bomba
         cell.classList.add('bomb');
-        // -Raccolgo il punteggio finale in console
-        finalResult = scoreNum;
+
+        // -Chiamo la funzione di fine partita
+        endGame(scoreNum, false);
       } else {
         // -Aggiungo la classe 'clicked'
         cell.classList.add('clicked');
@@ -155,16 +180,14 @@ button.addEventListener('click', function () {
         score.innerText = ++scoreNum;
         
         // -Controllo se l'utente ha vinto
-        if(scoreNum === maxScore) {
-          console.log(`Hai vinto! Hai fatto ${scoreNum} punti.`)
-        }
+        if(scoreNum === maxScore) endGame (scoreNum, true);       
       }
     });
     
     // -Inserisco la cella in pagina
     grid.appendChild(cell);
   }
-  
+
   console.log(maxScore)
 });
 

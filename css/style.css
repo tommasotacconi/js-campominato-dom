@@ -110,7 +110,8 @@ section {
 }
 
 .cell.clicked {
-  background-color: aqua;
+  background-color: rgb(88, 157, 255);
+  cursor: not-allowed;
 }
 
 .cell.beginner {
