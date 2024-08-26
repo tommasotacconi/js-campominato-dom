@@ -27,21 +27,48 @@ let totCells;
 // FASE DI ELABORAZIONE
 // -Attacco un event listener sul bottone play
 button.addEventListener('click', function () {
+  // -Ripulisco il contenuto di grid
+  grid.innerHTML = '';
+
+  // -Cambio il testo del button
+  if (button.innerText === 'Play' ) button.innerText = 'Play again';
+
   // -Uso uno switch per gestire i tre casi di difficoltà sulla base
   // del valore di selectValue. Creo per ogni caso una tabella di
   // dimensione differente
+  let cellDimensionClass;
   switch (selectValue) {
     case 'lvl-1':
       // Calcolo la variabile totCells
       totCells = rowsBeg * colsBeg;
 
+      // -Determino la classe che dovrà essere assegnta alla cella
+      cellDimensionClass = 'beginner';
+      break;
+    case 'lvl-2':
+      // -Calcolo la variabile totCells
+      totCells = rowsInt * colsInt;
+      
+      // -Determino la classe che dovrà essere assegnta alla cella
+      cellDimensionClass = 'intermediate';
+      break;
+    case 'lvl-3':
+      // Calcolo la variabile totCells
+      totCells = rowsExp * colsExp;
+      
+      // -Determino la classe che dovrà essere assegnta alla cella
+      cellDimensionClass = 'expert';
+      break;
+    default:
+        alert('Seleziona un livello');
+      }
       // -Inserisco dinamicamente le celle con un ciclo for
-      // e sfrutto la funzione createCell() precedentemente creata;
+      // e sfrutto la funzione createCell() precedentemente creata
       for (let i = 0; i < totCells; i++) {
         const cell = createCell(i + 1);
-
+        
         // -Inserisco la classe che dimensiona la cella
-        cell.classList.add('beginner');
+        cell.classList.add(cellDimensionClass);
         
         // -Attacco un event listener alla cella che faccia cambiare
         // il suo colore quando cliccata e che stampi in console il suo
@@ -54,58 +81,6 @@ button.addEventListener('click', function () {
         // -Inserisco la cella in pagina
         grid.appendChild(cell);
       }
-      break;
-      case 'lvl-2':
-        // Calcolo la variabile totCells
-        totCells = rowsInt * colsInt;
-        
-        // -Inserisco dinamicamente le celle con un ciclo for
-        // e sfrutto la funzione createCell() precedentemente creata;
-        for (let i = 0; i < totCells; i++) {
-          const cell = createCell(i + 1);
-          
-          // -Inserisco la classe che dimensiona la cella
-          cell.classList.add('intermediate');
-          
-          // -Attacco un event listener alla cella che faccia cambiare
-          // il suo colore quando cliccata e che stampi in console il suo
-          // numero
-          cell.addEventListener('click', function () {
-            cell.classList.toggle('clicked');
-            console.log(cell.innerText);
-          })
-          
-          // -Inserisco la cella in pagina
-        grid.appendChild(cell);
-      }
-      break;
-      case 'lvl-3':
-        // Calcolo la variabile totCells
-        totCells = rowsExp * colsExp;
-        
-        // -Inserisco dinamicamente le celle con un ciclo for
-        // e sfrutto la funzione createCell() precedentemente creata;
-        for (let i = 0; i < totCells; i++) {
-          const cell = createCell(i + 1);
-
-          // -Inserisco la classe che dimensiona la cella
-          cell.classList.add('expert');
-          
-          // -Attacco un event listener alla cella che faccia cambiare
-          // il suo colore quando cliccata e che stampi in console il suo
-          // numero
-          cell.addEventListener('click', function () {
-            cell.classList.toggle('clicked');
-            console.log(cell.innerText);
-        })
-      
-        // -Inserisco la cella in pagina
-        grid.appendChild(cell);
-      }
-      break;
-      default:
-        alert('Seleziona un livello');
-  }
 });
 
 // -Attacco un event listener alla select per modificare il valore
