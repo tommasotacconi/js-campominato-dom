@@ -50,6 +50,16 @@ let bombs;
 let scoreNum = 0;
 
 
+// FASE DI IMPORTAZIONE DATI
+// -Attacco un event listener alla select per modificare il valore
+// di una variabile che tenga conto del valore della select preso
+let selectValue;
+select.addEventListener('change', () => {
+  selectValue = select.value;
+  console.log(selectValue);
+});
+
+
 // FASE DI ELABORAZIONE
 // -Attacco un event listener sul bottone play
 button.addEventListener('click', function () {
@@ -154,12 +164,7 @@ button.addEventListener('click', function () {
     // -Inserisco la cella in pagina
     grid.appendChild(cell);
   }
+  
+  console.log(maxScore)
 });
 
-// -Attacco un event listener alla select per modificare il valore
-// di una variabile che tenga conto del valore della select preso
-let selectValue;
-select.addEventListener('change', function () {
-  selectValue = select.value;
-  console.log(selectValue);
-});
