@@ -109,9 +109,9 @@
 /* (round) */
 .btn-rd {
   font-size: 0.9rem;
-  color: lightskyblue;
+  color: #1877b2;
   padding: 7px 12px;
-  border: 2px solid lightskyblue;
+  border: 2px solid #1877b2;
   border-radius: 26px;
   background-color: transparent;
 }
@@ -119,7 +119,8 @@
 .btn-rd-hov:hover {
   font-size: 1rem;
   /* background-color: #3b7cff; */
-  border: 2px solid lightblue;
+  color: #1d9dec;
+  border: 2px solid #1d9dec;
   border-radius: 30px;
   padding: 8px 14px;
   cursor: pointer;

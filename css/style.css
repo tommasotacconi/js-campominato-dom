@@ -8,7 +8,7 @@
 /* Generics */
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: honeydew;
+  background-color: lightblue;
 }
 
 section {
@@ -94,6 +94,10 @@ section {
 .button-box,
 .select-box {
   flex-basis: 30%;
+}
+
+select {
+  border-radius: 10px;
 }
 
 .score-box {
