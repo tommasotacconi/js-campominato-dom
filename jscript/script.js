@@ -49,8 +49,6 @@ let bombs;
 // -Iniazializzo lo score
 let scoreNum = 0;
 
-
-
 // FASE DI ELABORAZIONE
 // -Attacco un event listener sul bottone play
 button.addEventListener('click', function () {
@@ -102,6 +100,7 @@ button.addEventListener('click', function () {
     default:
       alert('Seleziona un livello');
   }
+
   // -Inserisco dinamicamente le celle con un ciclo for
   // e sfrutto la funzione createCell() precedentemente creata
   for (let i = 0; i < totCells; i++) {
@@ -114,14 +113,26 @@ button.addEventListener('click', function () {
     // il suo colore quando cliccata e che stampi in console il suo
     // numero
     cell.addEventListener('click', function () {
-      // -La funzione procede solo se la cella non ha classe 'clicked'
-      if (cell.classList.contains('clicked')) return;
-      // -Aggiungo la classe 'clicked'
-      cell.classList.add('clicked');
-      // -Stampo in pagina il punteggio aumentato di uno
-      score.innerText = ++scoreNum;
       // -Stampo in console il numero di cella
       console.log(cell.innerText);
+      // -La funzione procede solo se la cella non ha classe 'clicked'
+      if (cell.classList.contains('clicked')) return;
+      // -Verifico se ha calpestato la bomba
+      if (bombs.includes(i)) {
+        // -Stampo il messaggio
+        console.log('Hai selezionato una bomba, fine della partita.');
+        // -Svuoto la cella
+        cell.innerText = '';
+        // -Aggiungo la classe bomba
+        cell.classList.add('bomb');
+        // -Raccolgo il punteggio finale in console
+        finalResult = scoreNum;
+      } else {
+        // -Aggiungo la classe 'clicked'
+        cell.classList.add('clicked');
+        // -Stampo in pagina il punteggio aumentato di uno
+        score.innerText = ++scoreNum;
+      }
     })
     
     // -Inserisco la cella in pagina
