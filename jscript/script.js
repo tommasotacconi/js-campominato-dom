@@ -26,7 +26,7 @@ function getRandomNumbers (max, totalNumbers) {
 function endGame (scoreNum, hasWon = false) {
   const result = hasWon ? 'vinto' : 'perso';
   const message = `Hai ${result}, hai totalizzato un punteggio di ${scoreNum} punti`
-  alert(message);
+  // alert(message);
   parResult.innerText = message;
   isGameOver = true;
 }
