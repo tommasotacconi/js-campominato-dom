@@ -13,6 +13,8 @@ const grid = document.getElementById('grid');
 const button = document.querySelector('button');
 // -Prendo la select
 const select = document.querySelector('select');
+// -Prendo il punto per lo score
+const score = document.querySelector('.score');
 
 // -Imposto delle condizioni iniziali  per poter controllare
 // righe e colonne della griglia
@@ -23,6 +25,9 @@ const colsInt = 9;
 const rowsExp = 7;
 const colsExp = 7;
 let totCells;
+
+// -Iniazializzo lo score
+let scoreNum = 0;
 
 // FASE DI ELABORAZIONE
 // -Attacco un event listener sul bottone play
@@ -74,7 +79,13 @@ button.addEventListener('click', function () {
         // il suo colore quando cliccata e che stampi in console il suo
         // numero
         cell.addEventListener('click', function () {
-          cell.classList.toggle('clicked');
+          // -La funzione procede solo se la cella non ha classe 'clicked'
+          if (cell.classList.contains('clicked')) return;
+          // -Aggiungo la classe 'clicked'
+          cell.classList.add('clicked');
+          // -Stampo in pagina il punteggio aumentato di uno
+          score.innerText = ++scoreNum;
+          // -Stampo in console il numero di cella
           console.log(cell.innerText);
         })
         
