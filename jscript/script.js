@@ -43,11 +43,12 @@ const colsExp = 7;
 let totCells;
 
 // imposto il numero di bombe fisso e inizializzo l'array di bombe
-const totalBombs = 16;
+const totalBombs = 48;
 let bombs;
 
 // -Iniazializzo lo score
 let scoreNum = 0;
+
 
 // FASE DI ELABORAZIONE
 // -Attacco un event listener sul bottone play
@@ -58,11 +59,12 @@ button.addEventListener('click', function () {
   // -Cambio il testo del button
   if (button.innerText === 'Play' ) button.innerText = 'Play again';
 
-  
   // -Uso uno switch per gestire i tre casi di difficoltà sulla base
   // del valore di selectValue. Creo per ogni caso una tabella di
   // dimensione differente
   let cellDimensionClass;
+  let maxScore;
+
   switch (selectValue) {
     case 'lvl-1':
       // Calcolo la variabile totCells
@@ -73,7 +75,10 @@ button.addEventListener('click', function () {
 
       // -Genero le bombe
       bombs = getRandomNumbers(totCells, totalBombs);
-      console.log(bombs);
+      console.log(bombs.sort());
+
+      // -Calcolo il massimo punteggio possibile
+      maxScore = totCells - totalBombs;
       break;
     case 'lvl-2':
       // -Calcolo la variabile totCells
@@ -84,7 +89,10 @@ button.addEventListener('click', function () {
       
       // -Genero le bombe
       bombs = getRandomNumbers(totCells, totalBombs);
-      console.log(bombs);
+      console.log(bombs.sort());
+
+      // -Calcolo il massimo punteggio possibile
+      maxScore = totCells - totalBombs;
       break;
     case 'lvl-3':
       // Calcolo la variabile totCells
@@ -92,10 +100,13 @@ button.addEventListener('click', function () {
       
       // -Determino la classe che dovrà essere assegnta alla cella
       cellDimensionClass = 'expert';
-
+      
       // -Genero le bombe
       bombs = getRandomNumbers(totCells, totalBombs);
-      console.log(bombs);
+      console.log(bombs.sort());
+
+      // -Calcolo il massimo punteggio possibile
+      maxScore = totCells - totalBombs;
       break;
     default:
       alert('Seleziona un livello');
@@ -118,7 +129,7 @@ button.addEventListener('click', function () {
       // -La funzione procede solo se la cella non ha classe 'clicked'
       if (cell.classList.contains('clicked')) return;
       // -Verifico se ha calpestato la bomba
-      if (bombs.includes(i)) {
+      if (bombs.includes(i + 1)) {
         // -Stampo il messaggio
         console.log('Hai selezionato una bomba, fine della partita.');
         // -Svuoto la cella
@@ -132,8 +143,13 @@ button.addEventListener('click', function () {
         cell.classList.add('clicked');
         // -Stampo in pagina il punteggio aumentato di uno
         score.innerText = ++scoreNum;
+        
+        // -Controllo se l'utente ha vinto
+        if(scoreNum === maxScore) {
+          console.log(`Hai vinto! Hai fatto ${scoreNum} punti.`)
+        }
       }
-    })
+    });
     
     // -Inserisco la cella in pagina
     grid.appendChild(cell);
