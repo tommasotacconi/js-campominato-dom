@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="author" content="Tommaso Tacconi">
+    <meta name="description" content="Campo minato">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Title-->
+    <title>Campo minato</title>
+    
+    <!-- Link -->
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Bootstrap icons and Bootstrap framework -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/utilities.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div class="container-lg">
+      <section class="grid-sec txt-alcenter">
+        <h1>Griglia Dinamica</h1>
+        <div class="commands ">
+          <div class="button-box">
+            <button class="btn-rd btn-rd-hov">Play</button>
+          </div>
+          <div class="select-box">
+            Difficoltà:
+            <select name="levels" id="level-select">
+              <option value="">scegli un livello</option>
+              <option value="lvl-1">beginner</option>
+              <option value="lvl-2">intermediate</option>
+              <option value="lvl-3">expert</option>
+            </select>
+          </div>
+        </div>
+        <div id="grid" class="d-flex f-wrap">
+        </div>
+      </section>
+    </div>
+
+    <!-- javascript connection -->
+    <script src="jscript/script.js"></script>
+  </body>
+</html>
+
+<!-- final commit -->

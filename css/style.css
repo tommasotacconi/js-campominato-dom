@@ -1,0 +1,128 @@
+/* Css reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Generics */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: honeydew;
+}
+
+section {
+  padding: 30px 15px;
+}
+
+/* var for cell dimensions */
+:root {
+  --cell-beginner: calc(100% / 10);
+  --cell-intermediate: calc(100% / 9);
+  --cell-expert: calc(100% / 7);
+}
+/* header {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 1;
+  width: 100%; 
+  color: white;
+  font-weight: 600;
+  font-size: 12px;
+}
+*/
+/* footer {
+  padding: 30px;
+  color: white;
+}
+*/
+/* nav {
+  line-height: 30px;
+  background-color: aquamarine;
+  max-width: 1100px;
+  margin: 0 auto;
+} */
+
+/* nav > div{
+  padding: var(--nav-pd)
+} */
+
+/* span {
+  margin: 0 5px;
+} */
+
+/* img {
+  width: 100%;
+} */
+
+/* ul {
+  list-style-type: none;
+  
+  a {
+      text-decoration: none;
+      color: white;
+      margin-right: 5px;
+  }
+
+  li:last-child a {
+      margin-right: 0;
+  }
+  
+} */
+
+/* Utilities */
+#grid {
+  width: 600px;
+  height: 600px;
+  margin: 40px auto 10px;
+}
+
+.commands {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-box {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 50%;
+}
+
+.select-box {
+  flex-basis: 50%;
+}
+
+.cell {
+  flex-basis: calc(100% / 10);
+  border: 2px solid darkcyan;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.cell.clicked {
+  background-color: aqua;
+}
+
+.cell.beginner {
+  height: var(--cell-beginner);
+  flex-basis: var(--cell-beginner);
+}
+
+.cell.intermediate {
+  height: var(--cell-intermediate);
+  flex-basis: var(--cell-intermediate);
+}
+
+.cell.expert {
+  height: var(--cell-expert);
+  flex-basis: var(--cell-expert);
+}
+
+
+
